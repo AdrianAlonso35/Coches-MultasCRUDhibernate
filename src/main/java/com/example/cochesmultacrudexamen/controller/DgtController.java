@@ -105,7 +105,6 @@ public class DgtController implements Initializable {
             Alerta.alertaError("Selecciona un coche para eliminar");
         }
         cargarTabla();
-
     }
 
     @FXML
@@ -119,9 +118,13 @@ public class DgtController implements Initializable {
             Alerta.alertaError("Rellena todos los campos");
         }else {
             if (!cochesCRUD.comprobarMatricula(matricula)){
-                Coches coches = new Coches(matricula,marca,modelo,tipo);
-                if(cochesCRUD.insertarCoche(coches)==1){
-                    Alerta.alertaInfo("Coche creado");
+                if (cochesCRUD.estructuraMatricula(matricula)){
+                    Coches coches = new Coches(matricula,marca,modelo,tipo);
+                    if(cochesCRUD.insertarCoche(coches)==1){
+                        Alerta.alertaInfo("Coche creado");
+                    }
+                }else {
+                    Alerta.alertaError("Introduce la estructura de la matricula correctamente (0000XXX)");
                 }
             }else {
                 Alerta.alertaError("Ya existe esta matricula");

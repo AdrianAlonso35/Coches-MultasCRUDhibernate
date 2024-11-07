@@ -74,4 +74,7 @@ public class CochesCRUD implements CochesCRUDimpl{
         }
         return false;
     }
+    public boolean estructuraMatricula(String matricula){
+        return matricula.matches("^[0-9]{4}[A-Z]{3}$");
+    }
 }
